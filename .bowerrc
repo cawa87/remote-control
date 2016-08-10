@@ -1,0 +1,9 @@
+{
+  "directory": "bundles/app/",
+  "timeout": 120000,
+  "registry": {
+    "search": [
+
+    ]
+  }
+}
