@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Begin page content -->
+    <div class="container">
+        <div class="m-t-1">
+            <h1>Relax and control your PC from WEB</h1>
+        </div>
+        <hr>
+
+        {% trans_default_domain 'FOSUserBundle' %}
+
+        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+        {{ form_widget(form) }}
+        <div>
+            <input type="submit" value="{{ 'registration.submit'|trans }}" />
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}

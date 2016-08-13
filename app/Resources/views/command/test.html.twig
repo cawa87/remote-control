@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="m-t-1">
+                    <h1>Test command</h1>
+                </div>
+                <hr>
+                <p>
+                    <code>
+                        {% for line in output %}
+                            {{ line|e }}<br>
+                        {% endfor %}
+                    </code>
+                </p>
+                <hr>
+                <a href="{{ path('admin_command_index') }}">Back to the list</a>
+
+            </div>
+            {% include "@AppAdmin/partials/sidemenu.html.twig" %}
+
+        </div>
+
+
+    </div>
+{% endblock %}

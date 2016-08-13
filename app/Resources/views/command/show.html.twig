@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Command</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ command.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ command.name }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ command.slug }}</td>
+            </tr>
+            <tr>
+                <th>Src</th>
+                <td>{{ command.src }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_command_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_command_edit', { 'id': command.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

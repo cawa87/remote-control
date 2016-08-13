@@ -1,27 +1,71 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-   <!-- Begin page content -->
-   <div class="container">
-      <div class="m-t-1">
-         <h1>Relax and control your PC from WEB</h1>
-      </div>
-      <hr>
-      <p class="lead">
-      <ul>
-         <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </li>
-         <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </li>
-         <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </li>
-         <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </li>
-         <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard </li>
-      </ul>
-      </p>
-      <p>
-         Contrary to popular belief, Lorem Ipsum is not simply random text.
-         It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
-      </p>
-      <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
-   </div>
+    <!-- Begin page content -->
+    <div class="container">
+        <div class="m-t-1">
+            <h1>Relax and control your PC from WEB</h1>
+        </div>
+        <hr>
+        <p class="lead">
+        <ul>
+            <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard
+            </li>
+            <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard
+            </li>
+            <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard
+            </li>
+            <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard
+            </li>
+            <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard
+            </li>
+        </ul>
+        </p>
+        <p>
+            Contrary to popular belief, Lorem Ipsum is not simply random text.
+            It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
+        </p>
+        <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Control groups</h2>
+                <hr>
+                {% for group in commandGroups %}
+                    <div class="col-md-3">
+                        <div class="card">
+                            <img class="card-img-top" style="width: 100%" src="http://placehold.it/250x150" alt="Card image cap">
+                            <div class="card-block">
+                                <h4 class="card-title">
+                                    {{ group.title }}
+                                </h4>
+                                <p class="card-text">About group</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                {% for command in group.commands %}
+                                <li class="list-group-item">
+                                    <code>
+                                        {{ command.src }}
+                                    </code>
+                                    <a href="{{ path('command_run',{'id':command.id}) }}">Run</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <div class="card-block">
+                                <a href="#" class="card-link">Go to group</a>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
 

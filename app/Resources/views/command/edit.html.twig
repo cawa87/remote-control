@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Begin page content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h1>Command edit</h1>
+
+                {{ form_start(edit_form) }}
+                {{ form_widget(edit_form) }}
+                <input type="submit" value="Edit" />
+                {{ form_end(edit_form) }}
+
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_command_index') }}">Back to the list</a>
+                    </li>
+                </ul>
+
+
+            </div>
+
+
+
+            {% include "@AppAdmin/partials/sidemenu.html.twig" %}
+
+        </div>
+
+
+    </div>
+
+{% endblock %}

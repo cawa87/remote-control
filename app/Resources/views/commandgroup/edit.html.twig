@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Begin page content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h1>CommandGroup edit</h1>
+                <hr>
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_group_index') }}">Back to the list</a>
+                    </li>
+                    <li>
+                        {{ form_start(delete_form) }}
+                        <button type="submit" class="btn btn-warning">{{ 'Delete'|trans }}</button>
+                        {{ form_end(delete_form) }}
+                    </li>
+                </ul>
+
+
+                {{ form_start(edit_form) }}
+                {{ form_widget(edit_form) }}
+                <button type="submit" class="btn btn-default">{{ 'Edit'|trans }}</button>
+                {{ form_end(edit_form) }}
+
+
+
+            </div>
+
+
+
+            {% include "@AppAdmin/partials/sidemenu.html.twig" %}
+
+        </div>
+
+
+    </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+

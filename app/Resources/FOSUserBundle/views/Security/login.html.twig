@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Begin page content -->
+    <div class="container">
+        <div class="m-t-1">
+            <h1>Relax and control your PC from WEB</h1>
+        </div>
+        <hr>
+
+        {% trans_default_domain 'FOSUserBundle' %}
+
+        {% if error %}
+            <div class="alert alert-danger">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Error!</strong> {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+
+        <form action="{{ path("fos_user_security_check") }}" method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+
+            <div class="form-group">
+                <label for="username" class="control-label required">{{ 'security.login.username'|trans }}</label>
+                <input
+                        type="text" id="username" name="_username" value="{{ last_username }}" required="required"
+                        maxlength="255" pattern=".{2,}" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="control-label required">{{ 'security.login.password'|trans }}</label>
+                <input
+                        type="password" id="password" name="_password" required="required"
+                        maxlength="255" pattern=".{2,}" class="form-control">
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="remember_me" name="_remember_me"
+                           value="on">{{ 'security.login.remember_me'|trans }}
+                </label>
+            </div>
+            <button type="submit" class="btn btn-default">{{ 'security.login.submit'|trans }}</button>
+
+
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}

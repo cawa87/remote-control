@@ -36,23 +36,78 @@
             <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
                 <a class="navbar-brand" href="#">Remote</a>
                 <ul class="nav navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('homepage') }}">Home <span class="sr-only">(current)</span></a>
-                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Login</a>
+                        <a class="nav-link" href="{{ path('homepage') }}">Home <span
+                                    class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Register</a>
-                    </li>
+                    {% if app.user %}
+
+                    {% elseif not app.user %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('fos_user_security_login') }}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('fos_user_registration_register') }}">Register</a>
+                        </li>
+                    {% endif %}
+
+
                     <li class="nav-item">
                         <a class="nav-link" href="#">About idea</a>
                     </li>
+
+
+                    {% if is_granted('ROLE_ADMIN')  %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_group_index') }}">Admin</a>
+                        </li>
+                    {% endif %}
+
+
+
+                    {% if app.user %}
+                    <form class="form-inline pull-xs-right hidden-xs">
+                        <input class="form-control" type="text" placeholder="Search">
+                        <button class="btn btn-outline" type="submit">Search</button>
+                    </form>
+
+                    <ul class="nav navbar-nav pull-xs-right">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('fos_user_profile_show') }}">
+                                Hello <b>{{ app.user.username }}</b> <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('fos_user_security_logout') }}">Logout</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="navbar-divider"></a>
+                        </li>
+                    </ul>
+                    {% endif %}
+
+
                 </ul>
             </div>
         </div>
     </nav>
+
+
 </div>
+
+{% for flash_message in app.session.flashBag.get('notice') %}
+    <div class="flash-notice">
+        {% if flash_message is iterable %}
+        <code>
+            {% for line in flash_message %}
+                {{ line|e }}<br>
+            {% endfor %}
+        </code>
+        {% else %}
+                {{ flash_message }}
+        {% endif %}
+    </div>
+{% endfor %}
 
 {% block body %}{% endblock %}
 

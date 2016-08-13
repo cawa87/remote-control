@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="m-t-1">
+                    <h1>Admin</h1>
+                </div>
+                <hr>
+                <table class="table table-hover">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>#</th>
+                        <th>{{ 'Name'|trans }}</th>
+                        <th>{{ 'Slug'|trans }}</th>
+                        <th>{{ 'Sorce code'|trans }}</th>
+                        <th style="width: 30%">{{ 'Actions'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for command in commands  %}
+                        <tr>
+                            <th scope="row">{{ command.id }}</th>
+                            <td>{{ command.name|e }}</td>
+                            <td><a href="#">{{ command.slug|e }}</a></td>
+                            <td><code>{{ command.src|e }}</code></td>
+                            <td>
+                                <a href="{{ path('admin_command_edit', { 'id': command.id }) }}">Edit</a>
+                                <a href="edit">Delete</a>
+                                <a href="{{ path('admin_command_test',{ 'id': command.id }) }}">Test</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+
+                    </tbody>
+                </table>
+
+            </div>
+            {% include "@AppAdmin/partials/sidemenu.html.twig" %}
+
+        </div>
+
+
+    </div>
+{% endblock %}
