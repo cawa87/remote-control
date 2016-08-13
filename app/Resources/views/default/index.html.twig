@@ -34,12 +34,15 @@
 
         <div class="row">
             <div class="col-md-12">
+                <p>Results:</p>
+                <code class="commandResult"></code>
                 <h2>Control groups</h2>
                 <hr>
                 {% for group in commandGroups %}
                     <div class="col-md-3">
                         <div class="card">
-                            <img class="card-img-top" style="width: 100%" src="http://placehold.it/250x150" alt="Card image cap">
+                            <img class="card-img-top" style="width: 100%" src="http://placehold.it/250x150"
+                                 alt="Card image cap">
                             <div class="card-block">
                                 <h4 class="card-title">
                                     {{ group.title }}
@@ -48,12 +51,14 @@
                             </div>
                             <ul class="list-group list-group-flush">
                                 {% for command in group.commands %}
-                                <li class="list-group-item">
-                                    <code>
-                                        {{ command.src }}
-                                    </code>
-                                    <a href="{{ path('command_run',{'id':command.id}) }}">Run</a>
-                                </li>
+                                    <li class="list-group-item">
+                                        <code>
+                                            {{ command.src }}
+                                        </code>
+                                        <button data-src="{{ path('command_run',{'id':command.id}) }}"
+                                                class="runCommand">
+                                            {{ 'Run'|trans }}</button>
+                                    </li>
                                 {% endfor %}
                             </ul>
                             <div class="card-block">

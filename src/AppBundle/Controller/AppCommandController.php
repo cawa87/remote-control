@@ -18,11 +18,6 @@ class AppCommandController extends AbstractAppController
         $output= '';
         exec($command->getSrc(),$output);
 
-        $this->addFlash(
-            'notice',
-            $output
-        );
-
-        return $this->redirectToRoute('homepage');
+       return $this->json($output);
     }
 }
